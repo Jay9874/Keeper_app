@@ -5,6 +5,7 @@ const db = process.env.MONGODB_URI
 
 const connectDB = async () => {
   try {
+    mongoose.set('strictQuery', false);
     await mongoose.connect(db, {
       useNewUrlParser: true,
       useUnifiedTopology: true
