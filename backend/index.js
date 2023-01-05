@@ -37,6 +37,6 @@ app.use("/api", keep);
 // setting up the port
 const port = 8080 || process.env.PORT;
 
-app.listen(PORT, () => {
+app.listen(port, () => {
     console.log(`Server started on ${port}`);
 });
