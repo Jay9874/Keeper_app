@@ -1,5 +1,5 @@
 ////////////////// Require all the packages /////////////////////
-const Keep = require("../models/keep");
+const Keep = require("../models/keep.js");
 
 // /////////// Exporting all the controller functions ////////////////
 
