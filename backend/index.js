@@ -7,20 +7,16 @@ const path = require('path');
 
 // initializing express 
 const app = express();
-
-app.use(express.static('../frontend/build'));
-
-app.use((req, res, next) => {
-  res.sendFile(path.join(__dirname, "../frontend", "build", "index.html"));
-});
-
-// routes
-const  keep = require('./routes/keep');
-
+app.use(cors({origin:true, credentials:true}));
 // connectDB
 connectDB();
 
-app.use(cors({origin:true, credentials:true}));
+
+app.use(express.static('../frontend/build'));
+
+
+// routes
+const  keep = require('./routes/keep');
 
 // initialize middleware
 app.use(express.json({extended:false}))
@@ -37,6 +33,11 @@ app.get("/api/about", (req, res) => {
 
 // use routes 
 app.use("/api", keep);
+
+
+app.use((req, res, next) => {
+    res.sendFile(path.join(__dirname, "../frontend", "build", "index.html"));
+  });
 
 
 // setting up the port

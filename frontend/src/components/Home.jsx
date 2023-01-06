@@ -15,7 +15,7 @@ function Home () {
 
   useEffect(() => {
     axios
-      .get(`/api`)
+      .get(`${url}/api`)
       .then(res => {
         console.log(res.data)
         setKeeps(res.data)
