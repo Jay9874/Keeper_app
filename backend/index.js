@@ -3,12 +3,16 @@ require('dotenv').config();
 const express = require("express");
 const connectDB = require("./config/db");
 const cors = require('cors');
+const path = require('path');
 
 // initializing express 
 const app = express();
 
 app.use(express.static('../frontend/build'));
 
+app.use((req, res, next) => {
+  res.sendFile(path.join(__dirname, "../frontend", "build", "index.html"));
+});
 
 // routes
 const  keep = require('./routes/keep');
@@ -27,11 +31,12 @@ app.get("/api/home", (req, res) => {
     res.send("<h1>Common... just keep going. Your server is runnig.</h1>");
 })
 
+app.get("/api/about", (req, res) => {
+    res.send("<h1>Common... just keep going. Your server is runnig.</h1>");
+})
+
 // use routes 
 app.use("/api", keep);
-
-
-
 
 
 // setting up the port

@@ -7,13 +7,15 @@ import EmptyNotes from './Exceptions/EmptyKeep'
 import Header from './Navigations/Header'
 import Footer from './Navigations/Footer'
 
+const url = 'http://localhost:8080';
+
 function Home () {
   const [keeps, setKeeps] = useState([])
   const [isBlured, setBlured] = useState(false)
 
   useEffect(() => {
     axios
-      .get('/api')
+      .get(`/api`)
       .then(res => {
         console.log(res.data)
         setKeeps(res.data)
