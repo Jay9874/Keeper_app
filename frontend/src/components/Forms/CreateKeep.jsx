@@ -33,7 +33,7 @@ export function CreateKeep ({ onAdd }) {
     e.preventDefault()
     if(keep.title && keep.description){
       axios
-      .post('http://localhost:8080/api', keep)
+      .post('/api', keep)
       .then(res => {
         console.log(res.data.message)
         onAdd(keep)
