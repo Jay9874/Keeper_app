@@ -1,11 +1,24 @@
-# Getting Started with Create React App
+# Get the deployment here: https://keeper-zx0e.onrender.com
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+# Getting Started with Keeper App in development
 
 ## Available Scripts
 
 In the project directory, you can run:
 
+# Installing the dependencies
+1. In backend folder
+### `npm install`
+
+2. In frontend folder
+### `npm install`
+
+# Starting the development servers
+1. In backend folder
+### `nodemon index.js
+
+2. In frontend folder
 ### `npm start`
 
 Runs the app in the development mode.\
