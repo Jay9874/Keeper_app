@@ -8,7 +8,6 @@ const Keep = require("../models/keep");
 exports.getAllKeep = (req, res) => {
     Keep.find()
         .then((keeps) => {
-            console.log(keeps);
             res.json(keeps);
         })
         .catch((err) =>
@@ -22,7 +21,6 @@ exports.getAllKeep = (req, res) => {
 exports.postCreateKeep = (req, res) => {
     Keep.create(req.body)
         .then((data) => {
-            console.log({data});
             res.json({message: "keep saved successfully", data});
         })
         .catch((err) => 
@@ -37,6 +35,7 @@ exports.postCreateKeep = (req, res) => {
 exports.putUpdateKeep = (req, res) => {
     console.log("id: ", req.params.id);
     console.log("body: ", req.body);
+    console.log(req.body);
     Keep.findByIdAndUpdate(req.params.id, req.body)
         .then((keep) => {
             console.log("edit: ", {keep});
@@ -54,6 +53,7 @@ exports.putUpdateKeep = (req, res) => {
 exports.deleteKeep = (req, res) => {
     Keep.findByIdAndRemove(req.params.id)
         .then((data) => {
+            console.log("deleted: ", {data});
             res.json({message: "deleted successfully", data});
         })      
         .catch((err) => 
