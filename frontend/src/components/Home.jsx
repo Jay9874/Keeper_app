@@ -15,8 +15,9 @@ function Home () {
   useEffect(() => {
     ;(async()=>{
       try{
-        const result = await axios.get(`/api`)
-        setKeeps(result.data);
+        console.log('hello');
+        // const result = await axios.get(`/api`)
+        // setKeeps(result.data);
       }catch(error){
         console.log(error.message)
       }
@@ -24,7 +25,7 @@ function Home () {
   },[])
   
   function handleDelete (id) {
-    axios.delete(`/api/${id}`)
+    // axios.delete(`/api/${id}`)
     setKeeps(data => {
       return data.filter(keep => keep._id !== id)
     })

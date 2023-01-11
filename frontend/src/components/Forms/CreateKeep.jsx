@@ -32,17 +32,18 @@ export function CreateKeep ({ onAdd }) {
   function handleSubmit (e) {
     e.preventDefault()
     if(keep.title && keep.description){
-      axios
-      .post('/api', keep)
-      .then(res => {
-        console.log(res.data.message)
-        onAdd(keep)
-        setKeep({ title: '', description: '' })
-      })
-      .catch(err => {
-        console.log('error could not create')
-        console.log(err.message)
-      })
+      onAdd(keep)
+      setKeep({ title: '', description: '' })
+      // axios
+      // .post('/api', keep)
+      // .then(res => {
+      //   console.log(res.data.message)
+        
+      // })
+      // .catch(err => {
+      //   console.log('error could not create')
+      //   console.log(err.message)
+      // })
     }
     shrink()
     

@@ -8,14 +8,20 @@ import Textarea from '../Inputs/Textarea'
 function Keep ({ id, title, desc, onDelete}) {
   const [isOpen, setOpen] = useState(false);
   const ref = useRef(null);
+  const closeBtnRef = useRef(null);
   const [keep, setKeep] = useState({
     title: title,
     description: desc
   })
 
   useEffect(() => {
-    const handleClickOutside = (event) =>{
-      if(ref.current && !ref.current.contains(event.target)){
+    const handleClickOutside = ({target}) =>{
+      console.log(target);
+      if(ref.current && (ref.current.contains(target)&& target === closeBtnRef.current)){
+        console.log('handle click outside got called: ', isOpen)
+        isOpen && onClickOutside();
+      }else if(ref.current && !ref.current.contains(target)){
+        console.log('handle click outside got called.2: ', isOpen)
         isOpen && onClickOutside();
       }
     };
@@ -23,29 +29,29 @@ function Keep ({ id, title, desc, onDelete}) {
     return () => {
       document.removeEventListener('click', handleClickOutside, true);
     };
-  }, [onClickOutside, isOpen])
+  }, [isOpen, onClickOutside]);
 
 
   function onClickOutside () {
-    submitEdit()
+    setOpen(false);
   }
 
   function handleChange ({name, value}) {
     setKeep(prevKeep => ({ ...prevKeep, [name]: value}))
   }
 
-  function submitEdit () {
-    axios
-      .put(`/api/${id}`, keep)
-      .then(res => {
-        setOpen(false);
-        console.log(res.data.message)
-      })
-      .catch(err => {
-        console.log('error could not update')
-        console.log(err.message)
-      })
-  }
+  // function submitEdit () {
+    // axios
+    //   .put(`/api/${id}`, keep)
+    //   .then(res => {
+    //     setOpen(false);
+    //     console.log(res.data.message)
+    //   })
+    //   .catch(err => {
+    //     console.log('error could not update')
+    //     console.log(err.message)
+    //   })
+  // }
 
   return (
       <div className='shadow-container'>
@@ -99,7 +105,7 @@ function Keep ({ id, title, desc, onDelete}) {
               }
               className='close-btn push-right'
             >
-              <Button style={{color: '#000', padding: '8px 24px', margin: '0 15px 0 0'}} onClick={submitEdit} size='small'>
+              <Button ref={closeBtnRef} style={{color: '#000', padding: '8px 24px', margin: '0 15px 0 0'}} onClick={onClickOutside} size='small'>
                 Close
               </Button>
             </div>
