@@ -16,7 +16,7 @@ In the project directory, you can run:
 
 # Starting the development servers
 1. In backend folder
-### `nodemon index.js
+### `nodemon index.js`
 
 2. In frontend folder
 ### `npm start`
