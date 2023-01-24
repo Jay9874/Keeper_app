@@ -1,4 +1,4 @@
-# Get the deployment here: https://keeper-zx0e.onrender.com
+
 
 
 # Getting Started with Keeper App in development
