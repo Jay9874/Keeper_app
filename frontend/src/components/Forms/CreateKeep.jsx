@@ -34,16 +34,16 @@ export function CreateKeep ({ onAdd }) {
     if(keep.title && keep.description){
       onAdd(keep)
       setKeep({ title: '', description: '' })
-      // axios
-      // .post('/api', keep)
-      // .then(res => {
-      //   console.log(res.data.message)
+      axios
+      .post('/api', keep)
+      .then(res => {
+        console.log(res.data.message)
         
-      // })
-      // .catch(err => {
-      //   console.log('error could not create')
-      //   console.log(err.message)
-      // })
+      })
+      .catch(err => {
+        console.log('error could not create')
+        console.log(err.message)
+      })
     }
     shrink()
     
