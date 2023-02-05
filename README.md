@@ -1,4 +1,4 @@
-# Get the deployment here: https://keeper-zx0e.onrender.com
+
 
 
 # Getting Started with Keeper App in development
@@ -16,7 +16,7 @@ In the project directory, you can run:
 
 # Starting the development servers
 1. In backend folder
-### `nodemon index.js
+### `nodemon index.js`
 
 2. In frontend folder
 ### `npm start`
