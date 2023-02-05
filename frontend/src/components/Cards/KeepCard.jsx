@@ -14,44 +14,45 @@ function Keep ({ id, title, desc, onDelete}) {
     description: desc
   })
 
-  useEffect(() => {
-    const handleClickOutside = ({target}) =>{
-      console.log(target);
-      if(ref.current && (ref.current.contains(target)&& target === closeBtnRef.current)){
-        console.log('handle click outside got called: ', isOpen)
-        isOpen && onClickOutside();
-      }else if(ref.current && !ref.current.contains(target)){
-        console.log('handle click outside got called.2: ', isOpen)
-        isOpen && onClickOutside();
-      }
-    };
-    document.addEventListener('click', handleClickOutside, true);
-    return () => {
-      document.removeEventListener('click', handleClickOutside, true);
-    };
-  }, [isOpen, onClickOutside]);
+  // useEffect(() => {
+  //   const handleClickOutside = ({target}) =>{
+  //     console.log(target);
+  //     if(ref.current && (ref.current.contains(target)&& target === closeBtnRef.current)){
+  //       console.log('handle click outside got called: ', isOpen)
+  //       isOpen && onClickOutside();
+  //     }else if(ref.current && !ref.current.contains(target)){
+  //       console.log('handle click outside got called.2: ', isOpen)
+  //       isOpen && onClickOutside();
+  //     }
+  //   };
+  //   document.addEventListener('click', handleClickOutside, true);
+  //   return () => {
+  //     document.removeEventListener('click', handleClickOutside, true);
+  //   };
+  // }, [isOpen, onClickOutside]);
 
 
   function onClickOutside () {
     setOpen(false);
+    submitEdit();
   }
 
   function handleChange ({name, value}) {
     setKeep(prevKeep => ({ ...prevKeep, [name]: value}))
   }
 
-  // function submitEdit () {
-    // axios
-    //   .put(`/api/${id}`, keep)
-    //   .then(res => {
-    //     setOpen(false);
-    //     console.log(res.data.message)
-    //   })
-    //   .catch(err => {
-    //     console.log('error could not update')
-    //     console.log(err.message)
-    //   })
-  // }
+  function submitEdit () {
+    axios
+      .put(`/api/${id}`, keep)
+      .then(res => {
+        setOpen(false);
+        console.log(res.data.message)
+      })
+      .catch(err => {
+        console.log('error could not update')
+        console.log(err.message)
+      })
+  }
 
   return (
       <div className='shadow-container'>
